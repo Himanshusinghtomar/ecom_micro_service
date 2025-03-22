@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'maven:3.8.6-openjdk-17' }
+        docker { image 'maven:3.8.6-eclipse-temurin-17' }
     }
 
     environment {
@@ -10,7 +10,12 @@ pipeline {
     stages {
         stage('Build All Microservices') {
             steps {
-                sh 'find . -name "pom.xml" -execdir ${MAVEN_CMD} clean package -DskipTests'
+                sh '''
+                for pom in $(find . -name "pom.xml"); do
+                    dir=$(dirname "$pom")
+                    (cd "$dir" && mvn clean package -DskipTests)
+                done
+                '''
             }
         }
 
