@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                sh 'find . -name "pom.xml" -execdir ${MAVEN_CMD} clean package \;'
+                sh 'find . -name "pom.xml" -execdir ${MAVEN_CMD} clean package'
             }
         }
 
