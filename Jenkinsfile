@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Build All Microservices') {
             steps {
-                sh 'find . -name "pom.xml" -execdir ${MAVEN_CMD} clean package -DskipTests \;'
+                sh 'find . -name "pom.xml" -execdir ${MAVEN_CMD} clean package -DskipTests'
             }
         }
 
